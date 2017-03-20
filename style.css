@@ -28,20 +28,12 @@ a {
 }
 
 
-a:link {
-   text-decoration: none;
-}
 
-
-a:visited {
-    text-decoration: none;
-}
-
-/* mouse over link 
+/* mouse over link */
 a:hover {
-    color: #1a2a3a;
+    text-decoration: underline;
 }
-*/
+
 h1 {
     background-color: #1a2a3a;
     color: #fff;
@@ -52,4 +44,21 @@ h1 {
 h1:hover {
     color: #1a2a3a;
     background-color: #fff;
+}
+
+h2 a {
+    color: #1a2a3a;
+}
+
+h1 a {
+    color: #fff;
+}
+h2 a:hover {
+    text-decoration: underline;
+    color: #1a2a3a;
+}
+
+a h1:hover {
+    text-decoration: underline;
+    color: #1a2a3a;
 }
