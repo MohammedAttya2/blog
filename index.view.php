@@ -20,7 +20,7 @@
     endforeach;
     ?>
 
-    <form accept="index.php" method="post">
+    <form action="index.php" method="post">
     User ID: <br><input type="text" name="user_id" default="1"><br><br>
     Title: <br><input type="title" name="title"><br><br>
     Content: <br><textarea name="content" rows="20" cols="80"></textarea><br>
