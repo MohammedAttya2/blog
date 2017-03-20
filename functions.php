@@ -2,21 +2,21 @@
 
 require_once "db_connection.php";
 
-function addPost($content, $user_id, $title, $connection)
+function addPost($content, $userId, $title, $connection)
 {
     $query = "INSERT INTO posts (user_id, post_head, content) VALUES (?, ?, ?);";
     $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, "iss", $user_id, $title, $content);
+    mysqli_stmt_bind_param($stmt, "iss", $userId, $title, $content);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     return true;
 }
 
-function addComment($content, $user_id, $post_id, $connection)
+function addComment($content, $userId, $postId, $connection)
 {
     $query = "INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?);";
     $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, "iis", $post_id, $user_id, $content);
+    mysqli_stmt_bind_param($stmt, "iis", $postId, $userId, $content);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     return true;
@@ -34,10 +34,10 @@ function getAllPosts($connection){
     return $posts;
 }
 
-function getPostComments($connection, $post_id){
+function getPostComments($connection, $postId){
     $query = "SELECT user_id, content FROM comments WHERE post_id = ?;";
     $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, "i", $post_id);
+    mysqli_stmt_bind_param($stmt, "i", $postId);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $comments = [];
@@ -63,6 +63,6 @@ function addUser(){
 
 }
 
-function getUsers($user_id, $connection){
+function getUsers($userId, $connection){
 
 }

@@ -12,8 +12,6 @@ $content = $post["content"];
 
 $comments = getPostComments($connection, $id);
 
-// $commentUserId = $comments[0];
-// $commentContent = $comments[1];
 
 require_once "article.view.php";
 
