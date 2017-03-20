@@ -6,6 +6,6 @@ $posts = getAllPosts($connection);
 $postUser = $posts[0];
 $postTitle = $posts[1];
 $postContent = $posts[2];
-
+$id = $posts[3];
 
 require_once "index.view.php";

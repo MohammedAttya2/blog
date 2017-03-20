@@ -12,7 +12,7 @@
     <?php
     $i = 0;
     foreach ($postTitle as $title): ?>
-    <h2><?= $title ?></h2>
+    <h2><a href="/article.php?article=<?=$id[$i]?>"><?= $title ?></a></h2>
     <p><?= $postContent[$i] ?></p>
     <hr>
     <?php

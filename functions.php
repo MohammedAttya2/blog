@@ -15,19 +15,22 @@ function addComment($content, $user_id, $post_id, $connection)
 }
 
 function getAllPosts($connection){
-    $query = "SELECT user_id, post_head, content FROM posts;";
+    $query = "SELECT id, user_id, post_head, content FROM posts;";
     $result = mysqli_query($connection, $query);
     $i = 0;
     $user = [];
     $title = [];
     $content = [];
+    $id = [];
+
     while ($row = mysqli_fetch_assoc($result)) {
         $user[$i] = $row["user_id"];
         $title[$i] = $row["post_head"];
         $content[$i] = $row["content"];
+        $id[$i] = $row["id"];
         $i++;
     }
-    return [$user, $title, $content];
+    return [$user, $title, $content, $id];
 }
 
 function getPostComments($connection, $post_id){
@@ -42,6 +45,13 @@ function getPostComments($connection, $post_id){
         $i++;
     }
     return [$user, $content];
+}
+
+function getPostById($connection, $id){
+    $query = "SELECT user_id, post_head, content FROM posts WHERE id = {$id};";
+    $result = mysqli_query($connection, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row;
 }
 
 function addUser(){
