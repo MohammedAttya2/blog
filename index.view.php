@@ -10,13 +10,11 @@
     </header>
     <hr>
     <?php
-    $i = 0;
-    foreach ($postTitle as $title): ?>
-    <h2><a href="/article.php?article=<?=$id[$i]?>"><?= $title ?></a></h2>
-    <p><?= $postContent[$i] ?></p>
+    foreach ($posts as $post): ?>
+    <h2><a href="/article.php?article=<?= $post["id"]?>"><?= $post["post_head"] ?></a></h2>
+    <p><?= $post["content"] ?></p>
     <hr>
     <?php
-    $i++;
     endforeach;
     ?>
 

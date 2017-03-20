@@ -18,20 +18,19 @@
         <h3>Article NOT found</h3>
     <?php endif; ?>
     <hr>
-    
+    <h3 style="text-align: center;">Comments</h3>
     <?php
     $i = 0;
-    if(empty($commentUserId)){
+    if(empty($comments)){
         echo "<h4>No Comments added yet</h4>";
         echo "<h4>Add First comment</h4>";
         echo "<hr>";
     }
-    foreach ($commentContent as $comment): ?>
-    <h4>User ID: <?= $commentUserId[$i] ?></h4>
-    <p><?= $comment ?></p>
+    foreach ($comments as $comment): ?>
+    <h4>User ID: <?= $comment["user_id"] ?></h4>
+    <p><?= $comment["content"] ?></p>
     <hr>
     <?php
-    $i++;
     endforeach;
     ?>
 
