@@ -1,0 +1,35 @@
+h1, h2 {
+    text-align: center;
+    font-family: "Sans Serif";
+    font-weight: bold;
+}
+
+body {
+    margin-left: 5em;
+    margin-right: 5em;
+    text-align: justify; 
+    font-family: 'Open Sans',Arial,sans-serif;
+}
+
+h1 {
+    background-color: #1a2a3a;
+    color: #fff;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1:hover {
+    color: #1a2a3a;
+    background-color: #fff;
+}
+
+header h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;    
+}
+
+footer h1 {
+    font-size: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
