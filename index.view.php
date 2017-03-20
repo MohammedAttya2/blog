@@ -26,7 +26,7 @@
     </form>
     <br><br>
     <?php
-    if (isset($_POST["user_id"]) && isset($_POST["title"]) && isset($_POST["content"])) {
+    if (isset($_POST[htmlspecialchars("user_id")]) && isset($_POST[htmlspecialchars("title")]) && isset($_POST[htmlspecialchars("content")])) {
         addPost($_POST["content"], $_POST["user_id"], $_POST["title"], $connection);
         echo "<p>You add a new article</p>";
         unset($_POST["user_id"]);

@@ -42,7 +42,7 @@
     </form>
     <?php
     if (isset($_POST["user_id"]) && isset($_POST["content"])) {
-        addComment($_POST["content"], $_POST["user_id"], $id, $connection);
+        addComment($_POST[htmlspecialchars("content")], (int) $_POST[htmlspecialchars("user_id")], $id, $connection);
         echo "<p>You add a new Comment</p>";
         unset($_POST["user_id"]);
         unset($_POST["content"]);
