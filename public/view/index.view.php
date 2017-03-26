@@ -1,7 +1,3 @@
-<?php 
-    use Blog\Post;
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +27,7 @@
     <br><br>
     <?php
     if (isset($_POST[htmlspecialchars("user_id")]) && isset($_POST[htmlspecialchars("title")]) && isset($_POST[htmlspecialchars("content")])) {
-        Post::addPost($_POST["content"], $_POST["user_id"], $_POST["title"], $connection);
+        Blog\Post::addPost($_POST["content"], $_POST["user_id"], $_POST["title"], $connection);
         echo "<p>You add a new article</p>";
         unset($_POST["user_id"]);
         unset($_POST["title"]);
