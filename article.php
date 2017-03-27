@@ -5,14 +5,12 @@ require_once "vendor/autoload.php";
 use Blog\Post;
 use Blog\Comment;
 
-$id = (int) $_GET["article"];
+$post = new Post($connection);
+[$user_id, $title, $content] = $post->getPostById();
 
-$post = Post::getPostById($connection, $id);
-$user_id = $post["user_id"];
-$title = $post["post_head"];
-$content = $post["content"];
-
-$comments = Comment::getPostComments($connection, $id);
+$id = $_GET[htmlspecialchars("article")];
+$comment = new Comment($connection);
+$comments = $comment->getPostComments();
 
 require_once "public/view/article.view.php";
 

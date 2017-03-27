@@ -20,15 +20,14 @@
     <hr>
     <h3 style="text-align: center;">Comments</h3>
     <?php
-    $i = 0;
     if(empty($comments)){
         echo "<h4>No Comments added yet</h4>";
         echo "<h4>Add First comment</h4>";
         echo "<hr>";
     }
-    foreach ($comments as $comment): ?>
-    <h4>User ID: <?= $comment["user_id"] ?></h4>
-    <p><?= $comment["content"] ?></p>
+    foreach ($comments as $oneComment): ?>
+    <h4>User ID: <?= $oneComment["user_id"] ?></h4>
+    <p><?= $oneComment["content"] ?></p>
     <hr>
     <?php
     endforeach;
@@ -42,10 +41,8 @@
     </form>
     <?php
     if (isset($_POST["user_id"]) && isset($_POST["content"])) {
-        Blog\Comment::addComment($_POST[htmlspecialchars("content")], (int) $_POST[htmlspecialchars("user_id")], $id, $connection);
-        echo "<p>You add a new Comment</p>";
-        unset($_POST["user_id"]);
-        unset($_POST["content"]);
+        $comment->addComment();
+        header("Location: /article.php?article={$id}");
     }
     ?>
     <br>
