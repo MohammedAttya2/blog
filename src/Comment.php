@@ -1,29 +1,23 @@
 <?php
 
 namespace Blog;
+use PDO;
 
 class Comment {
-    static function getPostComments($connection, $postId)
+    static function getPostComments(PDO $connection, $postId)
     {
         /**
         * this function add a new post to the database
-        * 
+        * @param PDO  $connection database connection
         * @param integer $postId the ID of the article
-        * @param DB Connection $connection database connection
         * @return array $comments assoc array includes the comments and its author
         */
 
-        $query = "SELECT user_id, content FROM comments WHERE post_id = ?;";
-        $stmt = mysqli_prepare($connection, $query);
-        mysqli_stmt_bind_param($stmt, "i", $postId);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $comments = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            array_push($comments, $row);
-        }
-        mysqli_stmt_close($stmt);
-        return $comments;
+        $query = "SELECT user_id, content FROM comments WHERE post_id = :postId;";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(":postId", $postId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     static function addComment($content, $userId, $postId, $connection)
@@ -38,11 +32,11 @@ class Comment {
         * @return bool
         */
 
-        $query = "INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?);";
-        $stmt = mysqli_prepare($connection, $query);
-        mysqli_stmt_bind_param($stmt, "iis", $postId, $userId, $content);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        return true;
+        $query = "INSERT INTO comments (post_id, user_id, content) VALUES (:postId, :userId, :content);";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(":postId", $postId, PDO::PARAM_INT);
+        $stmt->bindParam(":userId", $userId, PDO::PARAM_INT);
+        $stmt->bindParam(":content", $content, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 }

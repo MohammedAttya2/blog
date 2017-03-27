@@ -9,5 +9,3 @@ $posts = Post::getAllPosts($connection);
 
 require_once "public/view/index.view.php";
 
-
-mysqli_close($connection);
